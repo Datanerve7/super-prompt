@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Produk - DN7</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <style>
+        /* Definisi Variabel CSS untuk Tema Hitam, Putih, dan Emas */
+        :root {
+            --background-color: #000000; /* Hitam */
+            --text-color: #FFFFFF; /* Putih */
+            --accent-color: #FFD700; /* Emas */
+            --accent-hover: #FFCC00; /* Emas Terang */
+            --card-background: #1a1a1a; /* Hitam Terang untuk Kartu */
+            --card-hover: #333333; /* Hitam Lebih Terang pada Hover */
+            --button-background: #FFD700; /* Tombol Emas */
+            --button-hover: #FFCC00; /* Hover Tombol Emas */
+            --button-text-color: #000000; /* Teks Tombol Hitam */
+            --header-background: rgba(0, 0, 0, 0.8);
+            --nav-link-color: #FFD700; /* Tautan Navigasi Emas */
+            --nav-link-hover: #FFCC00; /* Hover Tautan Navigasi */
+            --footer-background: #000000;
+            --footer-text-color: #FFFFFF;
+            --footer-link-color: #FFD700; /* Tautan Footer Emas */
+            --footer-link-hover: #FFCC00; /* Hover Tautan Footer */
+            --description-text-color: #FFFFFF;
+            /* Variabel untuk More Button */
+            --more-button-bg: #FFD700;
+            --more-button-text: #000000;
+            --more-button-hover-bg: #FFCC00;
+            --more-button-hover-text: #FFFFFF;
+            /* Variabel untuk Modal */
+            --modal-background: #1a1a1a; /* Hitam Terang untuk Modal */
+            --modal-overlay-bg: rgba(0,0,0,0.8);
+            --modal-border-radius: 15px;
+        }
+
+        /* Reset dan Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        /* Kontainer Utama */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        /* Header */
+        .header {
+            background-color: var(--header-background);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .header .logo img {
+            height: 50px;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-menu ul li a {
+            color: var(--nav-link-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-menu ul li a:hover {
+            color: var(--nav-link-hover);
+        }
+        .nav-menu ul li a.active {
+            color: var(--accent-hover);
+            font-weight: bold;
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--nav-link-color);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .nav-menu ul {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: var(--header-background);
+                flex-direction: column;
+                width: 200px;
+                display: none;
+                border-radius: 0 0 10px 10px;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+            .nav-menu ul.active {
+                display: flex;
+            }
+            .nav-menu ul li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+        /* Produk Section */
+        .products-section {
+            padding: 100px 20px 60px 20px; /* Menyesuaikan padding atas */
+            background-color: var(--background-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+        .products-section h1 {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            transition: color 0.3s;
+        }
+        .products-section h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 20px auto;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        /* Kategori */
+        .category {
+            margin-bottom: 60px;
+        }
+        .category h2 {
+            font-size: 2em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            transition: color 0.3s;
+        }
+        /* Super Prompt Description */
+        .super-prompt-description {
+            margin-bottom: 40px;
+            padding: 15px 20px;
+            color: var(--description-text-color);
+            text-align: left;
+            transition: color 0.3s;
+        }
+        .super-prompt-description p {
+            font-size: 1em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        .super-prompt-description ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+        @media (min-width: 769px) {
+            .super-prompt-description ul {
+                margin-left: 30px;
+                padding-left: 30px;
+            }
+        }
+        /* Carousel */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+        .carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+        .carousel::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 4px;
+        }
+        .product-card {
+            flex: 0 0 auto;
+            width: 300px;
+            background-color: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            background-color: var(--card-hover);
+        }
+        /* Image Container for 16:9 Aspect Ratio */
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .product-card:hover .image-container img {
+            transform: scale(1.1);
+        }
+        .product-info {
+            padding: 15px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: color 0.3s;
+            word-wrap: break-word;
+        }
+        .product-info .price {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 5px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .product-info .original-price {
+            text-decoration: line-through;
+            color: var(--text-color);
+            font-size: 0.9em;
+        }
+        .product-info .new-price {
+            color: var(--text-color);
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .product-info .discount {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .product-info p {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        .product-info .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+        .product-info a.detail-button, .product-info a.buy-button {
+            flex: 1;
+            text-align: center;
+            background-color: var(--button-background);
+            color: var(--button-text-color); /* Mengubah dari var(--text-color) */
+            padding: 10px 0;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .product-info a.detail-button:hover, .product-info a.buy-button:hover {
+            background-color: var(--button-hover);
+            color: var(--button-text-color); /* Tetap menggunakan var(--button-text-color) */
+            transform: scale(1.05);
+        }
+        /* More Button for Mobile */
+        .more-button {
+            display: none;
+            margin-top: 20px;
+            background-color: var(--more-button-bg);
+            color: var(--more-button-text);
+            padding: 10px 20px;
+            border: 2px solid var(--more-button-text);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, color 0.3s, border-color 0.3s;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .more-button:hover {
+            background-color: var(--more-button-hover-bg);
+            color: var(--more-button-hover-text);
+            border-color: var(--more-button-hover-text);
+            transform: scale(1.05);
+        }
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background-color: var(--footer-background);
+            color: var(--footer-text-color);
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .footer .social-icons {
+            margin-bottom: 20px;
+        }
+        .footer .social-icons a {
+            color: var(--footer-link-color);
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        .footer .social-icons a:hover {
+            color: var(--footer-link-hover);
+        }
+        .footer p {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: var(--footer-text-color);
+            transition: color 0.3s;
+        }
+        /* Responsif */
+        @media (max-width: 768px) {
+            .carousel {
+                flex-direction: column;
+                align-items: center;
+            }
+            .product-card {
+                width: 90%;
+            }
+            .super-prompt .product-card:nth-child(n+4) {
+                display: none;
+            }
+            .super-prompt .product-card.show {
+                display: block;
+            }
+            .more-button {
+                display: block;
+            }
+            .profitpages .product-card img {
+                height: auto;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+            }
+        }
+        @media (min-width: 769px) {
+            .profitpages .product-card {
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            .profitpages .image-container {
+                padding-top: 56.25%;
+            }
+        }
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay-bg);
+            animation: fadeIn 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background-color: var(--modal-background);
+            padding: 20px;
+            border: 1px solid var(--accent-color);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: var(--modal-border-radius);
+            position: relative;
+            color: var(--text-color);
+            animation: slideIn 0.5s;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .modal-content .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .modal-content .modal-body img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .modal-content .modal-body .description {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--text-color);
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-modal:hover {
+            color: var(--accent-hover);
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes slideIn {
+            from {transform: translateY(-50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+        /* Styling untuk Harga Produk */
+        .price {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 5px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .price .original-price {
+            text-decoration: line-through;
+            color: var(--text-color);
+            font-size: 0.9em;
+        }
+        .price .new-price {
+            color: var(--text-color);
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .price .discount {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        /* Deskripsi di Tengah */
+        .top-description {
+            color: var(--description-text-color);
+            padding: 15px 20px;
+            text-align: left;
+            transition: color 0.3s;
+            margin: 40px 0;
+        }
+        .top-description h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .top-description p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+        .italic-text {
+            font-style: italic;
+        }
+        .bold-italic-text {
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header" data-aos="fade-down">
+        <div class="logo">
+            <img src="assets/icons/logo.png" alt="DN7 Logo">
+        </div>
+        <div class="nav-menu">
+            <ul id="nav-menu-list">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="index.html#benefits">Manfaat</a></li>
+                <li><a href="produk.html" class="active">Produk</a></li>
+                <li><a href="index.html#testimonial">Testimonial</a></li>
+                <li><a href="index.html#contact">Kontak</a></li>
+            </ul>
+        </div>
+        <!-- Toggle Tema Dihapus -->
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Produk Section -->
+    <div class="products-section" id="products" data-aos="fade-up">
+        <div class="container">
+            <!-- Deskripsi di Tengah -->
+            <div class="top-description" data-aos="fade-down">
+                <h2>Dalam 17-48 Hari, Miliki Produk Digital Canggih yang Menguasai Pasar Digital!</h2>
+                <p>Data terbaru menunjukkan bahwa ekonomi digital Indonesia diproyeksikan mencapai <em>USD 90 miliar</em> pada tahun 2024, meningkat 13% dari tahun sebelumnya. Tak hanya itu, pasar e-book global diperkirakan menghasilkan pendapatan sebesar <strong>USD 15,7 miliar</strong> pada tahun 2029, dengan pertumbuhan tahunan 7,37%. Tren ini menjadi bukti bahwa produk digital, seperti e-book dan Super Prompt, adalah peluang emas yang tidak boleh Anda lewatkan.</p>
+                <p>SuperPrompt Xcelerator dan Ebook Xcelerator adalah panduan revolusioner yang akan membantu Anda meluncurkan produk digital bernilai tinggi, mulai dari e-book setebal <span class="bold-text">300 hingga 900 halaman</span> hingga Super Prompt yang canggih, hanya dalam waktu 17 hingga 48 hari. Tidak ada lagi proses rumit atau membuang waktu. Anda akan mendapatkan panduan terstruktur yang memadukan seni storytelling, teknik penulisan ala penulis bestseller, dan penguasaan data real-time, sehingga produk Anda tidak hanya relevan tetapi juga menguasai pasar.</p>
+                <p>Bayangkan memiliki e-book berkualitas tinggi yang dilengkapi storytelling memikat atau Super Prompt canggih yang menjadi alat inovatif untuk audiens Anda. Di saat orang lain masih memikirkan ide, Anda sudah meluncurkan produk yang menarik perhatian dan menjawab kebutuhan pasar yang terus berkembang.</p>
+                <p>Namun, waktu adalah segalanya! Mereka yang bertindak sekarang akan memetik hasil lebih dulu. Pasar digital bergerak cepat, dan setiap hari yang Anda tunda adalah peluang yang Anda berikan kepada kompetitor. Jangan biarkan audiens yang seharusnya menjadi milik Anda berpaling ke produk lain hanya karena Anda terlambat.</p>
+                <p>Ambil Langkah Sekarang! Gabungkan kreativitas Anda dengan Ebook Xcelerator dan SuperPrompt Xcelerator untuk menciptakan produk digital yang tak tertandingi. Apakah Anda siap untuk bergabung dalam gelombang kesuksesan di era digital ini? Jangan tunda lagi, mulai hari ini dan pastikan Anda menjadi pelopor, bukan pengekor.</p>
+            </div>
+
+            <!-- Kategori ProfitPages -->
+            <div class="category profitpages">
+                <h2>ProfitPages</h2>
+                <div class="carousel">
+                    <!-- Produk ProfitPages 1 -->
+                    <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="image-container">
+                            <img src="assets/images/s-xcelerator.png" alt="ProfitPages 1">
+                        </div>
+                        <div class="product-info">
+                            <h3>SuperPrompt Xcelerator</h3>
+                            <div class="price">
+                                <span class="original-price">Rp. 1.199.999</span>
+                                <span class="new-price">Rp. 799.999</span>
+                                <span class="discount">-33,33%</span>
+                            </div>
+                            <p>Ciptakan Prompt Canggih, Siap Jual, Dominasi Digital!</p>
+                            <div class="button-group">
+                                <a class="detail-button" 
+                                   data-title="SuperPrompt Xcelerator" 
+                                   data-description="
+                                    <h4>Raih Profit Puluhan Juta dengan Cara Cerdas dan Cepat!</h4>
+                                    <p>SuperPrompt Xcelerator adalah solusi revolusioner untuk mengubah ide sederhana Anda menjadi Super Prompt yang berdaya jual tinggi. Tanpa perlu keahlian teknis, panduan ini dirancang agar siapa pun bisa langsung melangkah menuju kesuksesan. Jadilah pionir di pasar digital—jangan biarkan peluang emas ini berlalu begitu saja. Waktunya Anda memimpin, bukan hanya mengikuti!</p>
+                                    <h4>Cepat dan Efisien untuk Dunia yang Kompetitif</h4>
+                                    <p>Di era serba cepat, panduan ini memungkinkan Anda membuat Super Prompt dalam hitungan menit. Sementara orang lain masih bingung mulai dari mana, Anda sudah memiliki produk siap edar.</p>
+                                    <h4>Panduan Langsung dari Tren Terkini</h4>
+                                    <p>SuperPrompt Xcelerator dibangun berdasarkan tren teknologi dan kebutuhan pasar terbaru. Jangan sampai Anda melewatkan kesempatan emas menjadi pelopor di pasar digital yang sedang booming ini.</p>
+                                    <h4>Bangun Produk Digital dengan Nilai Tinggi</h4>
+                                    <p>Dengan SuperPrompt Xcelerator, Anda akan menciptakan prompt yang tidak hanya relevan tetapi juga bernilai tinggi, menjadikan produk Anda buruan para profesional, kreator, hingga perusahaan.</p>
+                                    <h4>Ciptakan Bisnis dengan Biaya Minimum</h4>
+                                    <p>Panduan ini menunjukkan cara mengemas ide sederhana menjadi aset digital tanpa memerlukan investasi besar. Jangan lewatkan kesempatan untuk membangun sumber penghasilan pasif Anda sekarang juga!</p>
+                                    <h4>Jadi Pemimpin di Era AI</h4>
+                                    <p>Dunia sedang bergerak menuju integrasi teknologi AI, dan Anda bisa menjadi salah satu pemimpin di era ini. SuperPrompt Xcelerator memastikan Anda memiliki tools dan pengetahuan untuk mendominasi.</p>
+                                    <h4>Kesempatan yang Tak Akan Datang Dua Kali</h4>
+                                    <p>Bayangkan, sementara Anda membaca ini, orang lain mungkin sedang meluncurkan Super Prompt mereka dengan panduan ini. Waktu Anda terbatas—jangan biarkan mereka menguasai pasar lebih dulu.</p>
+                                   ">
+                                   <i class="fas fa-info-circle"></i> Detail
+                                </a>
+                                <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Xcelerator" target="_blank">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Produk ProfitPages 2 -->
+                    <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="image-container">
+                            <img src="assets/images/e-xcelerator.png" alt="ProfitPages 2">
+                        </div>
+                        <div class="product-info">
+                            <h3>E-book Xcelerator</h3>
+                            <div class="price">
+                                <span class="original-price">Rp. 879.500</span>
+                                <span class="new-price">Rp. 599.999</span>
+                                <span class="discount">-31,78%</span>
+                            </div>
+                            <p>Ciptakan eBook Epik dalam Waktu Singkat!</p>
+                            <div class="button-group">
+                                <a class="detail-button" 
+                                   data-title="E-book Xcelerator" 
+                                   data-description="
+                                    <h4>Dalam 14-30 Hari, Anda Bisa Menghasilkan eBook 300-900 Halaman dan Mendominasi Pasar Digital!</h4>
+                                    <p>Bayangkan, di saat pasar produk digital tumbuh pesat dengan angka pertumbuhan global mencapai 23% setiap tahun, Anda sudah memiliki eBook berkualitas tinggi yang siap diluncurkan. Dengan <strong>Ebook Xcelerator</strong>, Anda tidak perlu menunggu bertahun-tahun untuk membuat produk digital bernilai tinggi. Dalam waktu hanya <strong>14 hingga 30 hari</strong>, Anda dapat menciptakan eBook setebal <strong>300-900 halaman</strong> yang relevan dengan tren dan dicari oleh audiens.</p>
+                                    <p>Tidak hanya membantu Anda menulis lebih cepat, <strong>Ebook Xcelerator</strong> memastikan setiap karya yang Anda hasilkan mencerminkan kualitas profesional. Dengan teknik storytelling ala penulis bestseller, eBook Anda akan memikat pembaca sejak halaman pertama dan meninggalkan kesan yang mendalam. Panduan ini juga mengajarkan cara menyampaikan data kompleks menjadi cerita persuasif, menjadikan produk Anda solusi yang tak tertandingi di pasar.</p>
+                                    <p>Bayangkan reputasi Anda melesat sebagai ahli di bidang Anda, sementara kompetitor Anda masih sibuk merancang konsep. Dengan setiap halaman yang Anda buat, Anda tidak hanya membangun kredibilitas tetapi juga menciptakan aset digital yang dapat menghasilkan pendapatan pasif berkelanjutan.</p>
+                                    <p>Ini bukan hanya soal menulis eBook—Ebook Xcelerator membantu Anda membangun <strong>produk digital yang terjual sendiri</strong>, menciptakan aliran pendapatan yang tidak pernah berhenti bekerja untuk Anda. Pasar terus bergerak cepat, dan mereka yang bertindak sekarang akan menjadi pelopor yang diingat. Kesempatan ini tidak akan menunggu lama, dan mereka yang memanfaatkan momen ini akan menjadi pemenangnya.</p>
+                                    <p><strong>Ambil langkah Anda sekarang sebelum orang lain mendahului Anda. Ebook Xcelerator adalah alat yang Anda butuhkan untuk mendominasi pasar digital dan mengubah ide Anda menjadi kesuksesan nyata. Jangan tunggu hingga terlambat!</strong></p>
+                                   ">
+                                   <i class="fas fa-info-circle"></i> Detail
+                                </a>
+                                <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+ebook+Xcelerator" target="_blank">BUY NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Penutup .products-section -->
+
+        <!-- Kategori Super Prompt -->
+        <div class="category super-prompt">
+            <h2>Super Prompt</h2>
+            
+            <!-- Deskripsi Baru -->
+            <div class="super-prompt-description" data-aos="fade-up">
+                <p>Transformasikan masa depan Anda dengan Super Prompt! <strong>Investasi Anda</strong> memberi akses eksklusif yang terbatas hanya untuk 10 orang pertama. Pilih paket terbaik:</p>
+                <ul>
+                    <li><strong>1 Page</strong> Super Prompt: <strong>Rp 69.999</strong></li>
+                    <li><strong>3 Page</strong> Super Prompt: <strong>Rp 132.977</strong> (Diskon ~36,2%)</li>
+                    <li><strong>5 Page</strong> Super Prompt: <strong>Rp 249.999</strong> (Diskon ~28,57%)</li>
+                    <li><strong>All In One</strong>: Super Prompt Eksklusif + 5 Page Super Prompt Lainnya: <strong>Rp 339.000</strong> (Diskon 39,19%) dari harga normal.</li>
+                </ul>
+                <p>Diskon besar ini hanya berlaku untuk yang tercepat. Setelah kuota penuh, harga bisa kembali normal atau diskon berkurang. Jangan tunggu lagi—ambil kesempatan ini sekarang dan hemat besar dengan Super Prompt!</p>
+            </div>
+            
+            <div class="carousel">
+                <!-- Produk 1 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="image-container">
+                        <img src="assets/images/produk-eksklusif.png" alt="Super Prompt 1">
+                    </div>
+                    <div class="product-info">
+                        <h3>Page Prompt Eksklusif</h3>
+                        <div class="price">
+                            <span class="original-price">Rp. 285.000</span>
+                            <span class="new-price">Rp. 111.500</span>
+                            <span class="discount">-60,88%</span>
+                        </div>
+                        <p>Solusi unggul, khusus untuk kesuksesan Anda.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Page Prompt Eksklusif" 
+                               data-description="
+                                <h4>Formula rahasia yang cuma kamu yang punya—boost kreativitasmu ke level tak terbayangkan!</h4>
+                                <ul>
+                                    <li>Personalisasi Maksimal: Dibuat khusus sesuai kebutuhan unik kamu.</li>
+                                    <li>Efisiensi Tinggi: Menghemat waktu dengan solusi instan namun berkualitas tinggi.</li>
+                                    <li>Kreativitas Tanpa Batas: Membuka potensi tak terduga dalam ide dan hasil.</li>
+                                    <li>Akses Eksklusif: Hanya untuk kamu, tanpa duplikasi, menciptakan keunikan nyata.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Eksklusif" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 2 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="image-container">
+                        <img src="assets/images/educator1.png" alt="Super Prompt 2">
+                    </div>
+                    <div class="product-info">
+                        <h3>Super Prompt For Educator</h3>
+                        <div class="price">
+                            <span class="new-price">Rp. 69.000</span>
+                        </div>
+                        <p>Meningkatkan pembelajaran dengan strategi cerdas.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Super Prompt For Educator" 
+                               data-description="
+                                <h4>Alat ajaib untuk bikin belajar lebih asyik, interaktif, dan bikin siswa terpukau.</h4>
+                                <ul>
+                                    <li>Metode Interaktif: Membuat pembelajaran jadi lebih menarik dan mudah dipahami siswa.</li>
+                                    <li>Peningkatan Engagement: Siswa aktif bertanya dan termotivasi belajar lebih dalam.</li>
+                                    <li>Penghematan Waktu: Kurikulum dan materi otomatis tersusun rapi.</li>
+                                    <li>Berbasis Data: Hasilkan evaluasi siswa yang akurat untuk kemajuan belajar.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Educator" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 3 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="image-container">
+                        <img src="assets/images/career.png" alt="Super Prompt 3">
+                    </div>
+                    <div class="product-info">
+                        <h3>Super Prompt For Career</h3>
+                        <div class="price">
+                            <span class="new-price">Rp. 69.000</span>
+                        </div>
+                        <p>Karier maju dengan langkah terarah.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Super Prompt For Career" 
+                               data-description="
+                                <h4>Kunci sukses kariermu ada di sini—tingkatkan performa, capai tujuan, naik kelas!</h4>
+                                <ul>
+                                    <li>Resume Profesional Instan: Meningkatkan peluang kerja dengan CV yang sempurna.</li>
+                                    <li>Strategi Negosiasi Gaji: Membantumu mendapatkan gaji terbaik tanpa bingung.</li>
+                                    <li>Pengembangan Soft Skills: Latihan komunikasi, kepemimpinan, dan manajemen waktu.</li>
+                                    <li>Rencana Karier Personal: Langkah konkret menuju jenjang karier impianmu.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Career" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 4 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="image-container">
+                        <img src="assets/images/content-creator.png" alt="Super Prompt 4">
+                    </div>
+                    <div class="product-info">
+                        <h3>Super Prompt For Content Creator</h3>
+                        <div class="price">
+                            <span class="new-price">Rp. 69.000</span>
+                        </div>
+                        <p>Kreativitas maksimal untuk konten luar biasa.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Super Prompt For Content Creator" 
+                               data-description="
+                                <h4>Konten viral jadi mudah—ide cemerlang siap tuai engagement tanpa drama.</h4>
+                                <ul>
+                                    <li>Ide Konten Viral: Inspirasi konten yang relevan dan menarik setiap hari.</li>
+                                    <li>Caption Memikat: Membuat audiens langsung klik, like, dan follow.</li>
+                                    <li>Script Video Efektif: Menyusun alur konten video yang engaging dan powerful.</li>
+                                    <li>Analitik Pintar: Prediksi performa kontenmu sebelum dipublikasikan.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Content+Creator" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 5 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="image-container">
+                        <img src="assets/images/content-writer.png" alt="Super Prompt 5">
+                    </div>
+                    <div class="product-info">
+                        <h3>Super Prompt For Content Writer</h3>
+                        <div class="price">
+                            <span class="new-price">Rp. 69.000</span>
+                        </div>
+                        <p>Ide menulis brilian, langsung mengalir lancar.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Super Prompt For Content Writer" 
+                               data-description="
+                                <h4>Racikan kata-kata yang bikin pembaca jatuh cinta—copywriting tak pernah semudah ini!</h4>
+                                <ul>
+                                    <li>Outline Instan: Struktur tulisan yang kuat hanya dalam hitungan detik.</li>
+                                    <li>Copywriting Berkelas: Kata-kata yang menghipnotis pembaca hingga aksi.</li>
+                                    <li>SEO Optimization: Tulisanmu ramah mesin pencari, siap mendominasi halaman pertama.</li>
+                                    <li>Penghemat Waktu: Tulisan selesai lebih cepat tanpa kehilangan kualitas.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Content+Writer" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 6 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="image-container">
+                        <img src="assets/images/swot-analysis.png" alt="Super Prompt 6">
+                    </div>
+                    <div class="product-info">
+                        <h3>Super Prompt For SWOT Analysis</h3>
+                        <div class="price">
+                            <span class="new-price">Rp. 69.000</span>
+                        </div>
+                        <p>Analisis mendalam, strategi bisnis tanpa celah.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Super Prompt For SWOT Analysis" 
+                               data-description="
+                                <h4>Analisis SWOT super cerdas—peta suksesmu kini lebih jelas dan tepat sasaran.</h4>
+                                <ul>
+                                    <li>Analisis Instan: Identifikasi kekuatan, kelemahan, peluang, dan ancaman dalam sekejap.</li>
+                                    <li>Strategi Tepat Sasaran: Membantu pengambilan keputusan terbaik untuk bisnis atau kariermu.</li>
+                                    <li>Peta Risiko Cerdas: Antisipasi hambatan sebelum terjadi.</li>
+                                    <li>Visualisasi Profesional: Hasilkan laporan SWOT yang mudah dipahami dan memukau.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+SWOT+Analysis" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 7 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="image-container">
+                        <img src="assets/images/presentation.png" alt="Super Prompt 7">
+                    </div>
+                    <div class="product-info">
+                        <h3>Super Prompt For Presentation</h3>
+                        <div class="price">
+                            <span class="new-price">Rp. 69.000</span>
+                        </div>
+                        <p>Presentasi memukau, memenangkan perhatian audiens.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="Super Prompt For Presentation" 
+                               data-description="
+                                <h4>Presentasi memukau tanpa stres—audiencemu pasti terkesan, pesanmu langsung melekat.</h4>
+                                <ul>
+                                    <li>Slide Profesional: Desain menarik dengan isi yang langsung ke inti pesan.</li>
+                                    <li>Narasi Memikat: Bantu menjelaskan ide besar tanpa membuat audiens bingung.</li>
+                                    <li>Audience Engagement: Tips dan trik untuk mempertahankan perhatian audiens sepanjang presentasi.</li>
+                                    <li>Praktis dan Cepat: Bantu selesaikan presentasi dengan waktu persiapan minimal.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+SuperPrompt+Presentation" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 8 -->
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="image-container">
+                        <img src="assets/images/all-in-one.png" alt="Super Prompt 8">
+                    </div>
+                    <div class="product-info">
+                        <h3>All In One — Super Prompt</h3>
+                        <div class="price">
+                            <span class="original-price">Rp. 558.000</span>
+                            <span class="new-price">Rp. 339.000</span>
+                            <span class="discount">-39,19%</span>
+                        </div>
+                        <p>Semua kebutuhan, satu solusi terintegrasi.</p>
+                        <div class="button-group">
+                            <a class="detail-button" 
+                               data-title="All In One — Super Prompt" 
+                               data-description="
+                                <h4>Satu paket untuk semua kebutuhanmu—praktis, powerful, sukses di genggamanmu!</h4>
+                                <ul>
+                                    <li>Fleksibilitas Tinggi: Semua kebutuhan produktivitasmu ada dalam satu paket.</li>
+                                    <li>Hemat Waktu dan Biaya: Tak perlu beli terpisah, satu solusi lengkap tersedia.</li>
+                                    <li>Terintegrasi: Semua prompt saling mendukung, membuat kerja lebih efisien.</li>
+                                    <li>Satu Langkah Sukses: Mulai dari ide hingga hasil eksekusi, semuanya terkover.</li>
+                                </ul>
+                               ">
+                               <i class="fas fa-info-circle"></i> Detail
+                            </a>
+                            <a class="buy-button" href="https://wa.me/6285651161356?text=Halo+Saya+Mau+Akses+All+In+One+SuperPrompt" target="_blank">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- More Button for Mobile -->
+            <button class="more-button" id="more-button">More...</button>
+        </div>
+    </div> <!-- Penutup .products-section -->
+
+    <!-- Modal untuk Detail Produk (Dipindahkan ke luar dari .products-section) -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">ProfitPages & SuperPrompt</h3>
+            <div class="modal-body" id="modal-description">
+                <div class="description">"Mau cuan tanpa ribet? Yuk, jadi dropshipper produk digital kami! Nggak perlu stok barang, cukup pasarkan produk keren yang laris manis. Potensi untung gede, support tim siap bantu, dan pastinya produk kami digital banget—praktis dan selalu dibutuhkan! Ayo gabung sekarang, mulai usaha tanpa modal besar. Kesempatan nggak nunggu lama!"</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" data-aos="fade-up">
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@datanerve7?_t=8pxDKxau8UC&_r=1"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/6285651161356"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/datanerve7/profilecard/?igsh=OGdiejdnZno3dDJ3"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/dn7-chatgpt-specialist-3092a531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2024 Datanerve7. Semua hak dilindungi undang-undang.</p>
+            <p>Email: excellenceprompt7@gmail.com</p>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Smooth Scroll untuk navigasi
+        document.querySelectorAll('.nav-menu ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        const headerOffset = document.querySelector('.header').offsetHeight;
+                        const descriptionHeight = document.querySelector('.top-description').offsetHeight;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - descriptionHeight;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Menutup menu pada perangkat mobile setelah klik
+                        const navMenuList = document.getElementById('nav-menu-list');
+                        if(navMenuList.classList.contains('active')){
+                            navMenuList.classList.remove('active');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Toggle Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenuList = document.getElementById('nav-menu-list');
+
+        hamburger.addEventListener('click', () => {
+            navMenuList.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // More Button Functionality for Super Prompt on Mobile
+        const moreButton = document.getElementById('more-button');
+        const superPromptCards = document.querySelectorAll('.super-prompt .product-card:nth-child(n+4)');
+
+        moreButton.addEventListener('click', () => {
+            superPromptCards.forEach(card => {
+                card.classList.add('show');
+            });
+            moreButton.style.display = 'none';
+        });
+
+        // Remove Toggle Tema Dark/Light
+        // Semua kode terkait tema dark/light telah dihapus
+
+        // Adjust active link based on current page
+        window.addEventListener('DOMContentLoaded', () => {
+            const current = document.querySelector('.nav-menu ul li a.active');
+            if(current){
+                current.classList.add('active');
+            }
+        });
+
+        // Prevent background overflow issues
+        window.addEventListener('resize', () => {
+            document.body.style.overflowX = 'hidden';
+        });
+
+        // Modal Functionality untuk Detail Produk
+        const modal = document.getElementById('product-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const closeModal = document.querySelector('.close-modal');
+
+        function openModal(title, description) {
+            modalTitle.textContent = title;
+            modalDescription.innerHTML = description;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        const detailButtons = document.querySelectorAll('.detail-button');
+        detailButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const title = button.getAttribute('data-title');
+                const description = button.getAttribute('data-description');
+                openModal(title, description);
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
