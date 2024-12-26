@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Smart Solution - Datanerve7</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <style>
+        /* Definisi Variabel CSS untuk Palet Warna */
+        :root {
+            --bg-color: #000000; /* Hitam */
+            --text-color: #FFFFFF; /* Putih */
+            --header-bg: rgba(0, 0, 0, 0.9);
+
+            --link-color: #FFFFFF;
+            --link-hover: #FFD700; /* Emas untuk hover */
+            --btn-bg: #FFD700; /* Emas */
+            --btn-hover: #FFA500; /* Oranye */
+            --divider-color: #FFFFFF;
+            --social-icon: #FFFFFF;
+            --social-icon-hover: #FFD700;
+
+            --section-bg: rgba(0, 0, 0, 0.9); /* Semi-transparan */
+            --section-text: #FFFFFF;
+            --input-bg: rgba(255, 255, 255, 0.1); /* Semi-transparan */
+            --input-text: #FFFFFF;
+            --input-placeholder: #CCCCCC;
+            --button-text: #000000;
+            --footer-bg: rgba(0, 0, 0, 0.9); /* Semi-transparan */
+            --footer-text: #FFFFFF;
+            --notification-success-bg: rgba(0, 128, 0, 0.2);
+            --notification-error-bg: rgba(255, 0, 0, 0.2);
+        }
+
+        /* Reset dan Dasar */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--header-bg);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .header .logo img {
+            height: 50px;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-menu ul li a {
+            color: var(--link-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .nav-menu ul li a:hover {
+            color: var(--link-hover);
+        }
+        .nav-menu ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--link-hover);
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 20px 60px 20px; /* Sesuaikan padding agar tidak tertutup header */
+            text-align: center;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .page-header h1 {
+            font-size: 3em;
+            color: var(--link-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            display: inline-block;
+        }
+        /* Animasi Kedip */
+        .page-header h1 span {
+            opacity: 0;
+            animation: blink 1s forwards;
+        }
+        .page-header h1 span:nth-child(odd) {
+            animation-delay: calc(0.1s * (var(--i)));
+        }
+        .page-header h1 span:nth-child(even) {
+            animation-delay: calc(0.1s * (var(--i)));
+        }
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Animasi Fade In untuk Teks Intro */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro-text {
+            opacity: 0;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: var(--text-color);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            animation: fadeIn 1s forwards;
+            animation-delay: 2.5s; /* Sesuaikan delay sesuai durasi animasi judul */
+        }
+
+        /* Section Produk */
+        .produk-section {
+            padding: 60px 20px;
+            background-color: var(--bg-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+        .produk-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: var(--link-color);
+            position: relative;
+            display: inline-block;
+        }
+        .produk-section h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--divider-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .produk-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .produk-card {
+            background-color: var(--input-bg);
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 8px 16px rgba(255,255,255,0.5);
+            transition: transform 0.3s, background-color 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+        }
+        .produk-card:hover {
+            transform: translateY(-10px);
+            background-color: var(--input-bg);
+        }
+        .produk-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .produk-card:hover img {
+            transform: scale(1.05);
+        }
+        .produk-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .produk-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--link-color);
+        }
+        .produk-content .harga {
+            margin-bottom: 15px;
+        }
+        .produk-content .harga .harga-asli {
+            text-decoration: line-through;
+            color: #ff4d4d;
+            margin-right: 10px;
+        }
+        .produk-content .harga .harga-diskon {
+            color: var(--link-hover);
+            font-weight: bold;
+        }
+        .produk-content ul {
+            list-style: disc inside;
+            margin: 10px 0;
+            color: var(--section-text);
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            margin-top: auto;
+        }
+        .btn-detail, .btn-beli {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--button-text);
+        }
+        .btn-detail {
+            background-color: var(--link-hover);
+            border: none;
+        }
+        .btn-detail:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.05);
+        }
+        .btn-beli {
+            background-color: var(--btn-bg);
+            border: none;
+        }
+        .btn-beli:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Modal Hologram */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 2000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            color: var(--text-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: hologram 1s forwards;
+        }
+        @keyframes hologram {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: var(--link-hover);
+        }
+        .modal-content p {
+            margin-bottom: 15px;
+            color: var(--section-text);
+        }
+        .modal-content ul {
+            list-style: disc inside;
+            margin-bottom: 20px;
+            color: var(--section-text);
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-btn:hover {
+            color: var(--link-hover);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .footer .social-icons {
+            margin-bottom: 20px;
+        }
+        .footer .social-icons a {
+            color: var(--social-icon);
+            margin: 0 10px;
+            font-size: 1.8em;
+            transition: color 0.3s;
+        }
+        .footer .social-icons a:hover {
+            color: var(--social-icon-hover);
+        }
+        .footer p {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: var(--footer-text);
+            transition: color 0.3s;
+        }
+
+        /* Responsif */
+        @media (max-width: 992px) {
+            .produk-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .produk-card {
+                width: 90%;
+            }
+            .btn-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-detail, .btn-beli {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header" data-aos="fade-down">
+        <div class="logo">
+            <a href="index.html"><img src="assets/icons/logo.png" alt="Datanerve7 Logo"></a>
+        </div>
+        <div class="nav-menu">
+            <ul id="nav-menu-list">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="profit-pages.html">Profit Pages</a></li>
+                <li><a href="smart-solution.html" class="active">Smart Solution</a></li>
+                <li><a href="super-prompt.html">Super Prompt</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header" data-aos="fade-up">
+        <h1>
+            <!-- Membungkus setiap huruf dalam span dengan atribut data-index -->
+            <span style="--i:1;">S</span>
+            <span style="--i:2;">m</span>
+            <span style="--i:3;">a</span>
+            <span style="--i:4;">r</span>
+            <span style="--i:5;">t</span>
+            <span style="--i:6;"> </span>
+            <span style="--i:7;">S</span>
+            <span style="--i:8;">o</span>
+            <span style="--i:9;">l</span>
+            <span style="--i:10;">u</span>
+            <span style="--i:11;">t</span>
+            <span style="--i:12;">i</span>
+            <span style="--i:13;">o</span>
+            <span style="--i:14;">n</span>
+        </h1>
+        <!-- Teks yang akan muncul setelah animasi judul -->
+        <p class="intro-text">Bersama Sahabat baru Anda: Smart Solution! Ubah tugas akademik jadi karya profesional dengan panduan dan Super Prompt unggulan.</p>
+    </div>
+
+    <!-- Section Produk -->
+    <section class="produk-section" data-aos="fade-up">
+        <div class="container">
+            <h2>Produk Unggulan</h2>
+            <div class="produk-container">
+                <!-- Produk 1: Skripsi Kuantitatif-->
+                <div class="produk-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="assets/images/kuantitatif.png" alt="Skripsi Kuantitatif">
+                    <div class="produk-content">
+                        <h3>Skripsi Kuantitatif</h3>
+                        <div class="harga">
+                            <span class="harga-asli">Rp 234.999,</span>
+                            <span class="harga-diskon">Rp 99.999,</span>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn-detail" onclick="openModal('kuantitatif')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                            <a href="https://wa.me/6285651161356?text=Saya%20tertarik%20dengan%20Skripsi%20Kuantitatif" class="btn-beli" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Beli Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 2: Skripsi Kualitatif -->
+                <div class="produk-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="assets/images/kualitatif.png" alt="Skripsi Kualitatif">
+                    <div class="produk-content">
+                        <h3>Skripsi Kualitatif</h3>
+                        <div class="harga">
+                            <span class="harga-asli">Rp 234.999,</span>
+                            <span class="harga-diskon">Rp 99.999,</span>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn-detail" onclick="openModal('kualitatif')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                            <a href="https://wa.me/6285651161356?text=Saya%20tertarik%20dengan%20Skripsi%20Kualitatif" class="btn-beli" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Beli Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Produk 3: Mixed Methods -->
+                <div class="produk-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="assets/images/mixed.png" alt="Mixed Methods">
+                    <div class="produk-content">
+                        <h3>Skripsi Campuran (Mixed Methods)</h3>
+                        <div class="harga">
+                            <span class="harga-asli">Rp 299.000,</span>
+                            <span class="harga-diskon">Rp 149.999,</span>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn-detail" onclick="openModal('mixed-methods')">
+                                <i class="fas fa-info-circle"></i> Detail
+                            </button>
+                            <a href="https://wa.me/6285651161356?text=Saya%20tertarik%20dengan%20Skripsi%20Campuran" class="btn-beli" target="_blank">
+                                <i class="fas fa-shopping-cart"></i> Beli Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal: Skripsi Kuantitatif -->
+    <div id="kuantitatif" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('kuantitatif')">&times;</button>
+            <h3>Skripsi Kuantitatif</h3>
+            <p>Temukan Solusi Skripsi Kuantitatif Anda dengan Super Prompt Terbaik!</p>
+            <ul>
+                <li>Hasil Maksimal, Tanpa Pusing</li>
+                <li>Akses Eksklusif, Terbatas untuk Pemikir Cepat</li>
+                <li>Kecepatan dalam Tangan Anda</li>
+                <li>Pendukung Terbaik di Belakang Anda</li>
+                <li>Harga Eksklusif, Waktu Terbatas</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal: Skripsi Kualitatif -->
+    <div id="kualitatif" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('kualitatif')">&times;</button>
+            <h3>Skripsi Kualitatif</h3>
+            <p>Peluang Emas untuk Mahasiswa yang Ingin Skripsi Selesai Tanpa Stres!</p>
+            <ul>
+                <li>Selesaikan Skripsi Anda dengan Cepat dan Elegan</li>
+                <li>Metode Teruji, Hasil Maksimal</li>
+                <li>Penawaran Eksklusif – Hanya untuk yang Bertindak Cepat</li>
+                <li>Hemat Waktu dan Hindari Revisi Berulang</li>
+                <li>Jadikan Skripsi Anda Sebagai Mahakarya</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal: Mixed Methods -->
+    <div id="mixed-methods" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('mixed-methods')">&times;</button>
+            <h3>Skripsi Campuran (Mixed Methods)</h3>
+            <p>Panduan & Super Prompt Skripsi Mixed Methods: Solusi Eksklusif untuk Skripsi Luar Biasa!</p>
+            <ul>
+            	<li>Dibuat oleh Ahli, untuk Masa Depan Anda</li>
+                <li>Solusi Lengkap untuk Skripsi Anda</li>
+                <li>Kecepatan yang Mengubah Permainan</li>
+                <li>Hanya untuk Anda yang Berani Berprestasi</li>
+                <li>Desain untuk Kesempurnaan Akademik</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" data-aos="fade-up">
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@datanerve7?_t=8pxDKxau8UC&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/6285651161356" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/datanerve7/profilecard/?igsh=OGdiejdnZno3dDJ3" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/dn7-chatgpt-specialist-3092a531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>                
+            </div>
+            <p>&copy; 2024 Datanerve7. Semua hak dilindungi undang-undang.</p>
+            <p>Email: excellenceprompt7@gmail.com</p>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Smooth Scroll untuk navigasi
+        document.querySelectorAll('.nav-menu ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        const headerOffset = document.querySelector('.header').offsetHeight;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Fungsi untuk membuka modal
+        function openModal(product) {
+            const modal = document.getElementById(product);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Mencegah scroll saat modal terbuka
+            }
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal(product) {
+            const modal = document.getElementById(product);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Mengembalikan scroll
+            }
+        }
+
+        // Menutup modal jika pengguna mengklik di luar konten modal
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

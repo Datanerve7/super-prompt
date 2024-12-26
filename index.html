@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Datanerve7 - Personal Branding</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <style>
+        /* Definisi Variabel CSS untuk Palet Warna */
+        :root {
+            --bg-color: #000000; /* Hitam */
+            --text-color: #FFFFFF; /* Putih */
+            --header-bg: rgba(0, 0, 0, 0.9);
+
+            --link-color: #FFFFFF;
+            --link-hover: #FFD700; /* Emas untuk hover */
+            --btn-bg: #FFD700; /* Emas */
+            --btn-hover: #FFA500; /* Oranye */
+            --divider-color: #FFFFFF;
+            --social-icon: #FFFFFF;
+            --social-icon-hover: #FFD700;
+
+            --section-bg: rgba(0, 0, 0, 0.9); /* Semi-transparan */
+            --section-text: #FFFFFF;
+            --input-bg: rgba(255, 255, 255, 0.1); /* Semi-transparan */
+            --input-text: #FFFFFF;
+            --input-placeholder: #CCCCCC;
+            --button-text: #000000;
+            --footer-bg: rgba(0, 0, 0, 0.9); /* Semi-transparan */
+            --footer-text: #FFFFFF;
+            --notification-success-bg: rgba(0, 128, 0, 0.2);
+            --notification-error-bg: rgba(255, 0, 0, 0.2);
+        }
+
+        /* Reset dan Dasar */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Kontainer Utama */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--header-bg);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .header .logo img {
+            height: 50px;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-menu ul li a {
+            color: var(--link-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            white-space: nowrap;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        .nav-menu ul li a:hover {
+            color: var(--link-hover);
+        }
+        .nav-menu ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--link-hover);
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 20px 60px 20px;
+            background-image: url('assets/images/hero.png'); /* Ganti dengan path gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: background-color 0.3s, background-image 0.3s;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay untuk memastikan teks terbaca */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            position: relative;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            height: auto;
+            aspect-ratio: 9 / 16;
+            object-fit: cover;
+        }
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+            position: relative;
+        }
+        .hero-text h1 {
+            font-size: 2.5em;
+            color: var(--link-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            transition: color 0.3s;
+            border-right: .15em solid var(--link-color);
+            white-space: nowrap;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--link-color); }
+        }
+
+        .hero-text p {
+            font-size: 1.2em;
+            color: var(--section-text);
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+        .btn-primary {
+            background-color: var(--btn-bg);
+            color: var(--button-text);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Garis Pemisah */
+        .hero .divider {
+            height: 2px;
+            width: 60px;
+            background-color: var(--divider-color);
+            margin: 20px 0;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        /* Manfaat Produk */
+        .benefits {
+            padding: 60px 20px;
+            background-image: url('assets/images/manfaat.png'); /* Ganti dengan path gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, background-image 0.3s;
+        }
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay untuk memastikan teks terbaca */
+            z-index: 1;
+        }
+        .benefits .container {
+            position: relative;
+            z-index: 2;
+        }
+        .benefits h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--link-color);
+            position: relative;
+            transition: color 0.3s;
+        }
+        .benefits h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--divider-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background-color 0.3s;
+        }
+        .benefits-content {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .benefit-item {
+            background-color: var(--input-bg);
+            padding: 20px;
+            border-radius: 15px;
+            width: 250px;
+            height: 300px;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 8px 16px rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .benefit-item:hover {
+            transform: translateY(-10px);
+            background-color: var(--input-bg);
+        }
+        .benefit-icon {
+            font-size: 2em;
+            color: var(--link-color);
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+        .benefit-item h3 {
+            font-size: 1.2em;
+            color: var(--section-text);
+            margin-bottom: 10px;
+            transition: color 0.3s;
+            text-align: center;
+        }
+        .benefit-item p {
+            flex-grow: 1;
+            font-size: 1em;
+            color: var(--section-text);
+            text-align: center;
+            transition: color 0.3s;
+        }
+
+        /* Portofolio */
+        .portfolio {
+            padding: 60px 20px;
+            background-image: url('assets/images/portfolio.png'); /* Ganti dengan path gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, background-image 0.3s;
+        }
+        .portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay untuk memastikan teks terbaca */
+            z-index: 1;
+        }
+        .portfolio .container {
+            position: relative;
+            z-index: 2;
+        }
+        .portfolio h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--link-color);
+            position: relative;
+            transition: color 0.3s;
+        }
+        .portfolio h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--divider-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background-color 0.3s;
+        }
+        .portfolio-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .portfolio-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .portfolio-item {
+            flex: 0 0 auto;
+            width: 350px;
+            background-color: var(--input-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(255,255,255,0.5);
+            transition: transform 0.3s, background-color 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s;
+            cursor: pointer; /* Menambahkan pointer untuk menunjukkan bahwa gambar dapat diklik */
+        }
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            background-color: var(--input-bg);
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Tombol Detail untuk Portofolio */
+        .btn-detail {
+            display: block;
+            width: 80%;
+            margin: 15px auto 0;
+            padding: 12px 0;
+            background-color: var(--btn-bg);
+            color: var(--button-text);
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        .btn-detail:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Rekomendasi */
+        .testimonial {
+            padding: 60px 20px;
+            background-image: url('assets/images/testimonial.png'); /* Ganti dengan path gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, background-image 0.3s;
+        }
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay untuk memastikan teks terbaca */
+            z-index: 1;
+        }
+        .testimonial .container {
+            position: relative;
+            z-index: 2;
+        }
+        .testimonial h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--link-color);
+            position: relative;
+            transition: color 0.3s;
+        }
+        .testimonial h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--divider-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background-color 0.3s;
+        }
+        .testimonial-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .testimonial-item {
+            background-color: var(--input-bg);
+            padding: 20px;
+            margin: 10px;
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(255,255,255,0.5);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .testimonial-item:hover {
+            transform: translateY(-10px);
+            background-color: var(--input-bg);
+        }
+        .testimonial-item p {
+            font-style: italic;
+            color: var(--section-text);
+            margin-bottom: 10px;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+        .testimonial-item h4 {
+            color: var(--link-color);
+            font-size: 1em;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        /* Formulir Kontak dengan Formspree */
+        .contact {
+            padding: 60px 20px;
+            background-image: url('assets/images/contact-bg.jpg'); /* Ganti dengan path gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, background-image 0.3s;
+        }
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Overlay untuk memastikan teks terbaca */
+            z-index: 1;
+        }
+        .contact .container {
+            position: relative;
+            z-index: 2;
+        }
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--link-color);
+            position: relative;
+            transition: color 0.3s;
+        }
+        .contact h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--divider-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background-color 0.3s;
+        }
+        .contact-form {
+            max-width: 700px;
+            margin: 40px auto 0;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Jarak antar elemen formulir */
+        }
+        .contact-form .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            /* Tambahkan margin-bottom untuk jarak vertikal */
+            margin-bottom: 15px;
+        }
+        .contact-form .input-group:last-child {
+            margin-bottom: 0; /* Hilangkan margin pada elemen terakhir */
+        }
+        .contact-form .input-group i {
+            position: absolute;
+            left: 15px;
+            color: var(--input-placeholder);
+            pointer-events: none;
+            font-size: 1.2em;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px 15px 15px 45px; /* Padding kiri ditambah untuk ikon */
+            border: none;
+            border-radius: 10px;
+            background-color: var(--input-bg);
+            color: var(--input-text);
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            outline: none;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: var(--input-placeholder);
+            transition: color 0.3s;
+        }
+        .contact-form button {
+            background-color: var(--btn-bg);
+            color: var(--button-text);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            align-self: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-form button:hover {
+            background-color: var(--btn-hover);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Notifikasi */
+        .notification {
+            max-width: 700px;
+            margin: 20px auto 0;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            text-align: left;
+            font-size: 1em;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .notification.success {
+            background-color: var(--notification-success-bg);
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            box-shadow: 0 4px 15px rgba(0, 128, 0, 0.3);
+        }
+        .notification.error {
+            background-color: var(--notification-error-bg);
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .footer .social-icons {
+            margin-bottom: 20px;
+        }
+        .footer .social-icons a {
+            color: var(--social-icon);
+            margin: 0 10px;
+            font-size: 1.8em;
+            transition: color 0.3s;
+        }
+        .footer .social-icons a:hover {
+            color: var(--social-icon-hover);
+        }
+        .footer p {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: var(--footer-text);
+            transition: color 0.3s;
+        }
+
+        /* Responsif */
+        @media (max-width: 1200px) {
+            .nav-menu ul {
+                gap: 20px;
+            }
+            .hero-text h1 {
+                font-size: 2em;
+            }
+        }
+        @media (max-width: 992px) {
+            .nav-menu ul {
+                gap: 15px;
+            }
+            .hero-text h1 {
+                font-size: 1.8em;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu ul {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .nav-menu ul li a {
+                font-size: 0.9em;
+            }
+            .benefits-content, .testimonial-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .benefit-item, .testimonial-item {
+                text-align: center;
+            }
+            .hero {
+                flex-direction: column;
+                padding: 80px 20px 40px 20px;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-text p {
+                font-size: 1em;
+            }
+            .portfolio-content {
+                gap: 20px;
+            }
+            .portfolio-carousel {
+                flex-direction: column;
+            }
+            .portfolio-item {
+                width: 90%;
+            }
+            .benefit-item {
+                height: 300px;
+            }
+            .contact-form {
+                padding: 20px;
+                gap: 20px;
+            }
+            .contact-form .input-group i {
+                left: 10px;
+            }
+            .contact-form input, .contact-form textarea {
+                padding: 12px 12px 12px 40px;
+            }
+            .contact-form button {
+                padding: 12px 30px;
+            }
+            .btn-detail {
+                width: 100%; /* Menyesuaikan tombol agar penuh pada layar kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header" data-aos="fade-down">
+        <div class="logo">
+            <img src="assets/icons/logo.png" alt="Datanerve7 Logo">
+        </div>
+        <div class="nav-menu">
+            <ul id="nav-menu-list">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#benefits">Manfaat Produk</a></li>
+                <li><a href="profit-pages.html">Profit Pages</a></li>
+                <li><a href="smart-solution.html">Smart Solution</a></li>
+                <li><a href="super-prompt.html">Super Prompt</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#testimonial">Testimoni</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero" id="hero" data-aos="fade-up">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image" data-aos="fade-right" data-aos-delay="100">
+                    <img src="assets/images/ai1.png" alt="DN7">
+                </div>
+                <div class="hero-text" data-aos="fade-left" data-aos-delay="200">
+                    <h1 id="typed-text"></h1>
+                    <div class="divider"></div>
+                    <p>Profesional di bidang digital products dengan pengalaman kurang-lebih 1 tahun.</p>
+                    <a class="btn-primary" href="#portfolio">Lihat Produk</a>
+                </div>
+            </div>
+            <!-- Efek Percikan Api (Opsional) -->
+            <span class="spark" style="left: 20%; animation-delay: 0s;"></span>
+            <span class="spark" style="left: 40%; animation-delay: 0.5s;"></span>
+            <span class="spark" style="left: 60%; animation-delay: 1s;"></span>
+            <span class="spark" style="left: 80%; animation-delay: 1.5s;"></span>
+            <span class="spark" style="left: 30%; animation-delay: 0.25s;"></span>
+            <span class="spark" style="left: 50%; animation-delay: 0.75s;"></span>
+            <span class="spark" style="left: 70%; animation-delay: 1.25s;"></span>
+            <span class="spark" style="left: 90%; animation-delay: 1.75s;"></span>
+        </div>
+    </div>
+
+    <!-- Manfaat Produk -->
+    <div class="benefits" id="benefits" data-aos="fade-up">
+        <div class="container">
+            <h2>Manfaat Produk</h2>
+            <div class="benefits-content">
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="benefit-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Akses Terbatas</h3>
+                    <p>Menjamin keamanan dan eksklusivitas penggunaan produk kami.</p>
+                </div>
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="benefit-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Update Berkala</h3>
+                    <p>Pembaruan rutin untuk fitur dan keamanan terbaru.</p>
+                </div>
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="benefit-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Konsultasi Gratis AI</h3>
+                    <p>Manfaatkan konsultasi AI tanpa biaya tambahan.</p>
+                </div>
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="benefit-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Template Eksklusif</h3>
+                    <p>Akses ke template premium yang tidak tersedia untuk umum.</p>
+                </div>
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Fitur Custom Prompt</h3>
+                    <p>Sesuaikan prompt sesuai kebutuhan spesifik Anda.</p>
+                </div>
+                <div class="benefit-item" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Diskon Produk Baru</h3>
+                    <p>Nikmati potongan harga khusus untuk produk terbaru kami.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portofolio -->
+    <div class="portfolio" id="portfolio" data-aos="fade-up">
+        <div class="container">
+            <h2>Produk Kami</h2>
+            <div class="portfolio-content">
+                <div class="portfolio-carousel">
+                    <!-- Proyek 1 -->
+                    <div class="portfolio-item" data-aos="zoom-in" data-aos-delay="100">
+                        <a href="profit-pages.html">
+                            <img src="assets/images/profit.png" alt="Profit Pages">
+                        </a>
+                        <a class="btn-detail" href="profit-pages.html">Lihat</a>
+                    </div>
+                    <!-- Proyek 2 -->
+                    <div class="portfolio-item" data-aos="zoom-in" data-aos-delay="200">
+                        <a href="super-prompt.html">
+                            <img src="assets/images/prompt.png" alt="Super Prompt">
+                        </a>
+                        <a class="btn-detail" href="super-prompt.html">Lihat</a>
+                    </div>
+                    <!-- Proyek 3 -->
+                    <div class="portfolio-item" data-aos="zoom-in" data-aos-delay="300">
+                        <a href="smart-solution.html">
+                            <img src="assets/images/smart.png" alt="Smart Solution">
+                        </a>
+                        <a class="btn-detail" href="smart-solution.html">Lihat</a>
+                    </div>
+                    <!-- Tambahkan lebih banyak item portofolio sesuai kebutuhan -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rekomendasi -->
+    <div class="testimonial" id="testimonial" data-aos="fade-up">
+        <div class="container">
+            <h2>Testimoni</h2>
+            <div class="testimonial-list">
+                <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
+                    <p>"Siap, udah saya cek semua, keren banget! Makasih juga buat respon cepatnya, puas banget sama pelayanannya!"</p>
+                    <h4>— Customer 10</h4>
+                </div>
+                <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
+                    <p>"Langganan banget ini mah! Makasih banyak ya, nanti insyaallah saya order lagi, soalnya emang puas banget."</p>
+                    <h4>— Customer 7</h4>
+                </div>
+                <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
+                    <p>"Jujur, saya udah sering beli e-book promt di tempat lain, tapi pas coba yang dari DN7, beda banget rasanya. First impression langsung suka, puas banget sama produknya. Ditunggu update-update selanjutnya ya, sukses terus DN7!"</p>
+                    <h4>— Customer 2</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulir Kontak dengan Formspree -->
+    <div class="contact" id="contact" data-aos="fade-up">
+        <div class="container">
+            <h2>Hubungi Saya</h2>
+            <div class="contact-form">
+                <form id="contact-form" action="https://formspree.io/f/xanykned" method="POST">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="nama" placeholder="Nama Anda" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" placeholder="Email Anda" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-comment"></i>
+                        <textarea name="pesan" rows="5" placeholder="Pesan Anda" required></textarea>
+                    </div>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+                </form>
+                <!-- Elemen Notifikasi -->
+                <div id="notification" class="notification"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" data-aos="fade-up">
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@datanerve7?_t=8pxDKxau8UC&_r=1"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/6285651161356"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/datanerve7/profilecard/?igsh=OGdiejdnZno3dDJ3"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/dn7-chatgpt-specialist-3092a531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>                
+            </div>
+            <p>&copy; 2024 Datanerve7. Semua hak dilindungi undang-undang.</p>
+            <p>Email: excellenceprompt7@gmail.com</p>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Smooth Scroll untuk navigasi
+        document.querySelectorAll('.nav-menu ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        const headerOffset = document.querySelector('.header').offsetHeight;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Animasi Ketik dan Hapus untuk "Datanerve"
+        const typedTextElement = document.getElementById('typed-text');
+        const textArray = ['Datanerve'];
+        const typingDelay = 150;
+        const erasingDelay = 100;
+        const newTextDelay = 2000; // Delay sebelum mengetik teks berikutnya
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typedTextElement.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextElement.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay + 1100);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { // Menunggu DOM siap
+            if(textArray.length) setTimeout(type, newTextDelay + 250);
+        });
+
+        // Validasi Email dan Mengirim Formulir dengan Fetch API
+        const contactForm = document.getElementById('contact-form');
+        const notification = document.getElementById('notification');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const emailInput = contactForm.querySelector('input[name="email"]');
+            const email = emailInput.value.trim();
+
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            notification.style.display = 'none';
+            notification.classList.remove('success', 'error');
+            notification.textContent = '';
+
+            if (!isValidEmail(email)) {
+                notification.classList.add('error');
+                notification.textContent = 'Email yang Anda masukkan tidak valid.';
+                notification.style.display = 'block';
+                return;
+            }
+
+            const formData = new FormData(contactForm);
+            fetch(contactForm.action, {
+                method: contactForm.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    contactForm.reset();
+                    notification.classList.add('success');
+                    notification.textContent = 'Pesan Anda berhasil dikirim. Terima kasih!';
+                    notification.style.display = 'block';
+                } else {
+                    return response.json().then(data => {
+                        notification.classList.add('error');
+                        if (data.errors) {
+                            notification.textContent = data.errors.map(error => error.message).join(', ');
+                        } else {
+                            notification.textContent = 'Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.';
+                        }
+                        notification.style.display = 'block';
+                    });
+                }
+            })
+            .catch(error => {
+                notification.classList.add('error');
+                notification.textContent = 'Terjadi kesalahan jaringan. Silakan coba lagi.';
+                notification.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
