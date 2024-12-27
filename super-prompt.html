@@ -33,6 +33,10 @@
             --footer-text: #FFFFFF;
             --notification-success-bg: rgba(0, 128, 0, 0.2);
             --notification-error-bg: rgba(255, 0, 0, 0.2);
+            
+            /* Tambahan untuk Diskon */
+            --discount-bg: #FF5733; /* Warna oranye untuk diskon */
+            --discount-text: #FFFFFF;
         }
 
         /* Reset dan Dasar */
@@ -112,9 +116,32 @@
             left: 0;
         }
 
+        /* Discount Notification Banner */
+        .discount-banner {
+            background-color: var(--discount-bg);
+            color: var(--discount-text);
+            text-align: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 80px; /* Sesuaikan jika header memiliki tinggi berbeda */
+            width: 100%;
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+        .discount-banner p {
+            margin: 0;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .discount-banner p {
+                font-size: 0.9em;
+            }
+        }
+
         /* Page Header */
         .page-header {
-            padding: 120px 20px 60px 20px; /* Sesuaikan padding agar tidak tertutup header */
+            padding: 160px 20px 60px 20px; /* Tambah padding top untuk banner */
             text-align: center;
             background-color: var(--bg-color);
             min-height: 100vh;
@@ -209,6 +236,7 @@
             flex-direction: column;
             align-items: center;
             text-align: left;
+            position: relative; /* Untuk positioning badge */
         }
         .produk-card:hover {
             transform: translateY(-10px);
@@ -222,6 +250,19 @@
         }
         .produk-card:hover img {
             transform: scale(1.05);
+        }
+        /* Discount Badge */
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px; /* Posisikan di kanan atas */
+            background-color: var(--discount-bg);
+            color: var(--discount-text);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+            z-index: 10;
         }
         .produk-content {
             padding: 20px;
@@ -393,11 +434,18 @@
                 width: 90%;
             }
             .btn-container {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 10px;
             }
             .btn-detail, .btn-beli {
                 width: 100%;
+            }
+        }
+
+        /* Tambahan Responsif untuk Banner */
+        @media (max-width: 768px) {
+            .discount-banner p {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -416,6 +464,11 @@
                 <li><a href="super-prompt.html" class="active">Super Prompt</a></li>
             </ul>
         </div>
+    </div>
+
+    <!-- Discount Notification Banner -->
+    <div class="discount-banner" data-aos="fade-down">
+        <p>🎉 Dapatkan Diskon 50%! Berlaku hingga 17 Januari 2024. Jangan lewatkan kesempatan ini! 🎉</p>
     </div>
 
     <!-- Page Header -->
@@ -446,12 +499,13 @@
             <div class="produk-container">
                 <!-- Produk 1: Page Eksklusif -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/prompt-eksklusif.png" alt="Super Prompt Eksklusif">
                     <div class="produk-content">
                         <h3>Super Prompt Eksklusif</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 285.000,</span>
-                            <span class="harga-diskon">Rp 109.999</span>
+                            <span class="harga-asli">Rp 285.000</span>
+                            <span class="harga-diskon">Rp 142.500</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('page-eksklusif')">
@@ -465,12 +519,13 @@
                 </div>
                 <!-- Produk 2: Presentasi -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/presentasi.png" alt="Presentasi">
                     <div class="produk-content">
                         <h3>Presentasi - Super Prompt</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 129.999,</span>
-                            <span class="harga-diskon">Rp 69.999,</span>
+                            <span class="harga-asli">Rp 129.999</span>
+                            <span class="harga-diskon">Rp 64.999,5</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('presentasi')">
@@ -484,12 +539,13 @@
                 </div>
                 <!-- Produk 3: Career -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/career.png" alt="Career">
                     <div class="produk-content">
                         <h3>Career - Super Prompt</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 129.999,</span>
-                            <span class="harga-diskon">Rp 69.999,</span>
+                            <span class="harga-asli">Rp 129.999</span>
+                            <span class="harga-diskon">Rp 64.999,5</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('career')">
@@ -503,12 +559,13 @@
                 </div>
                 <!-- Produk 4: Educator -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/educator.png" alt="Educator">
                     <div class="produk-content">
                         <h3>Educator - Super Prompt</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 129.999,</span>
-                            <span class="harga-diskon">Rp 69.999,</span>
+                            <span class="harga-asli">Rp 129.999</span>
+                            <span class="harga-diskon">Rp 64.999,5</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('educator')">
@@ -522,12 +579,13 @@
                 </div>
                 <!-- Produk 5: SWOT Analysis-->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/swot.png" alt="SWOT Analysis">
                     <div class="produk-content">
                         <h3>SWOT Analysis - Super Prompt</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 149.999,</span>
-                            <span class="harga-diskon">Rp 79.999,</span>
+                            <span class="harga-asli">Rp 149.999</span>
+                            <span class="harga-diskon">Rp 74.999,5</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('swot-analysis')">
@@ -541,12 +599,13 @@
                 </div>
                 <!-- Produk 6: Content Writer -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/writer.png" alt="Content Writer">
                     <div class="produk-content">
                         <h3>Content Writer - Super Prompt</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 129.999,</span>
-                            <span class="harga-diskon">Rp 69.999,</span>
+                            <span class="harga-asli">Rp 129.999</span>
+                            <span class="harga-diskon">Rp 64.999,5</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('content-writer')">
@@ -560,12 +619,13 @@
                 </div>
                 <!-- Produk 7: Content Creator -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/creator.png" alt="Content Creator">
                     <div class="produk-content">
                         <h3>Content Creator - Super Prompt</h3>
                         <div class="harga">
                             <span class="harga-asli">Rp 89.999</span>
-                            <span class="harga-diskon">Rp 59.999,</span>
+                            <span class="harga-diskon">Rp 44.999,5</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('content-creator')">
@@ -579,12 +639,13 @@
                 </div>
                 <!-- Produk 8: All In One -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="discount-badge">50% OFF</div>
                     <img src="assets/images/all-in-one.png" alt="All In One">
                     <div class="produk-content">
                         <h3>All In One - Super Prompt</h3>
                         <div class="harga">
                             <span class="harga-asli">Rp 558.000</span>
-                            <span class="harga-diskon">Rp 339.999</span>
+                            <span class="harga-diskon">Rp 279.000</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('all-in-one')">
@@ -597,209 +658,208 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Modal: Page Eksklusif -->
-    <div id="page-eksklusif-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('page-eksklusif')">&times;</button>
-            <h3>Super Prompt Eksklusif</h3>
-            <p>Rahasia Produktivitas Tinggi Ada di Sini!</p>
-            <ul>
-                <li>Kuasai Rahasia Produktivitas Tinggi</li>
-                <li>Dirancang untuk Profesional Serius</li>
-                <li>Penawaran dengan Kuota Terbatas</li>
-                <li>Hasil Maksimal dalam Waktu Singkat</li>
-                <li>Kesempatan Tidak Akan Lama</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: Presentasi -->
-    <div id="presentasi-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('presentasi')">&times;</button>
-            <h3>Presentasi - Super Prompt</h3>
-            <p>Pilihan Tepat untuk Menonjolkan Pesan Anda</p>
-            <ul>
-                <li>Eksklusivitas yang Sulit Ditolak</li>
-                <li>Kuasai Audiens Anda dalam Waktu Singkat</li>
-                <li>Penawaran Terbatas, Nilai yang Maksimal</li>
-                <li>Kredibilitas Instan dalam Setiap Slide</li>
-                <li>Tingkatkan Efisiensi, Gandakan Dampak Anda</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: Career -->
-    <div id="career-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('career')">&times;</button>
-            <h3>Career - Super Prompt</h3>
-            <p>Kami memahami bahwa waktu Anda berharga, dan langkah menuju karier impian tidak boleh tertunda. Inilah alasan Anda harus segera mengakses Super Prompt Career hari ini.</p>
-            <ul>
-                <li>Hanya untuk Anda yang Berani Melangkah Lebih Cepat!</li>
-                <li>Waktu Terbatas, Dampak Tanpa Batas!</li>
-                <li>Akses Hanya untuk Segelintir yang Terpilih!</li>
-                <li>Solusi Instan untuk Anda yang Super Ambisius!</li>
-                <li>Keunggulan Anda Dimulai di Sini!</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: Educator -->
-    <div id="educator-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('educator')">&times;</button>
-            <h3>Educator - Super Prompt</h3>
-            <p>Jadilah Guru yang Selalu Dikenang dan Menginspirasi Sepanjang Hidup Mereka.</p>
-            <ul>
-                <li>Penawaran yang Hanya untuk Anda</li>
-                <li>Jadikan Pendidikan Lebih Menginspirasi</li>
-                <li>Waktu Adalah Segalanya</li>
-                <li>Kualitas yang Tidak Tertandingi</li>
-                <li>Langkah Awal Menuju Era Baru Pendidikan</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: SWOT Analysis -->
-    <div id="swot-analysis-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('swot-analysis')">&times;</button>
-            <h3>SWOT Analysis - Super Prompt</h3>
-            <p>Super Prompt untuk melakukan analisis SWOT yang mendalam dan akurat. Temukan Keunggulan Kompetitif Anda.</p>
-            <ul>
-                <li>Panduan Paling Tajam & Tepat Sasaran</li>
-                <li>Rahasia yang Dimiliki Segelintir Orang</li>
-                <li>Hanya untuk Anda yang Siap Bertindak</li>
-                <li>Langkah Jitu Menuju Keputusan Berbasis Data</li>
-                <li>Harga Eksklusif untuk Penentu Keberhasilan</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: Content Writer -->
-    <div id="content-writer-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('content-writer')">&times;</button>
-            <h3>Content Writer - Super Prompt</h3>
-            <p>Untuk Anda yang ingin menghasilkan tulisan yang menjual dan selalu memukau pembaca:</p>
-            <ul>
-                <li>Teknik Penulisan yang Menghipnotis</li>
-                <li>Sistem yang Mengubah Ide Biasa Jadi Luar Biasa</li>
-                <li>Rahasia Copywriting yang Menggerakkan Pasar</li>
-                <li>Konsistensi Tanpa Batas</li>
-                <li>Penawaran Eksklusif untuk Anda yang Cepat Bertindak</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: Content Creator -->
-    <div id="content-creator-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('content-creator')">&times;</button>
-            <h3>Content Creator - Super Prompt</h3>
-            <p>Untuk Anda yang ingin menciptakan konten memikat dan berdaya tarik tinggi:</p>
-            <ul>
-                <li>Formula Kreatif yang Tak Tertandingi</li>
-                <li>Penghemat Waktu Anda</li>
-                <li>Strategi untuk Meningkatkan Engagement</li>
-                <li>Kualitas Profesional dalam Setiap Postingan</li>
-                <li>Akses Eksklusif dengan Kuota Terbatas</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Modal: All In One -->
-    <div id="all-in-one-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('all-in-one')">&times;</button>
-            <h3>All In One - Super Prompt</h3>
-            <p>Revolusi Kreativitas dan Produktivitas Anda.</p>
-            <ul>
-                <li>Segalanya dalam Genggaman Anda</li>
-                <li>Eksklusivitas Terbatas untuk Pencetak Perubahan</li>
-                <li>Kecepatan untuk Hasil Maksimal</li>
-                <li>Dirancang untuk Anda, oleh Ahli Terbaik</li>
-                <li>Penawaran Tak Tertandingi, Tapi Tidak Selamanya</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer" data-aos="fade-up">
-        <div class="container">
-            <div class="social-icons">
-                <a href="https://www.tiktok.com/@datanerve7?_t=8pxDKxau8UC&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/6285651161356" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/datanerve7/profilecard/?igsh=OGdiejdnZno3dDJ3" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/dn7-chatgpt-specialist-3092a531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>                
+        <!-- Modal: Page Eksklusif -->
+        <div id="page-eksklusif-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('page-eksklusif')">&times;</button>
+                <h3>Super Prompt Eksklusif</h3>
+                <p>Rahasia Produktivitas Tinggi Ada di Sini!</p>
+                <ul>
+                    <li>Kuasai Rahasia Produktivitas Tinggi</li>
+                    <li>Dirancang untuk Profesional Serius</li>
+                    <li>Penawaran dengan Kuota Terbatas</li>
+                    <li>Hasil Maksimal dalam Waktu Singkat</li>
+                    <li>Kesempatan Tidak Akan Lama</li>
+                </ul>
             </div>
-            <p>&copy; 2024 Datanerve7. Semua hak dilindungi undang-undang.</p>
-            <p>Email: excellenceprompt7@gmail.com</p>
         </div>
-    </div>
 
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        <!-- Modal: Presentasi -->
+        <div id="presentasi-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('presentasi')">&times;</button>
+                <h3>Presentasi - Super Prompt</h3>
+                <p>Pilihan Tepat untuk Menonjolkan Pesan Anda</p>
+                <ul>
+                    <li>Eksklusivitas yang Sulit Ditolak</li>
+                    <li>Kuasai Audiens Anda dalam Waktu Singkat</li>
+                    <li>Penawaran Terbatas, Nilai yang Maksimal</li>
+                    <li>Kredibilitas Instan dalam Setiap Slide</li>
+                    <li>Tingkatkan Efisiensi, Gandakan Dampak Anda</li>
+                </ul>
+            </div>
+        </div>
 
-        // Smooth Scroll untuk navigasi
-        document.querySelectorAll('.nav-menu ul li a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = href.substring(1);
-                    const target = document.getElementById(targetId);
-                    if (target) {
-                        const headerOffset = document.querySelector('.header').offsetHeight;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        <!-- Modal: Career -->
+        <div id="career-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('career')">&times;</button>
+                <h3>Career - Super Prompt</h3>
+                <p>Kami memahami bahwa waktu Anda berharga, dan langkah menuju karier impian tidak boleh tertunda. Inilah alasan Anda harus segera mengakses Super Prompt Career hari ini.</p>
+                <ul>
+                    <li>Hanya untuk Anda yang Berani Melangkah Lebih Cepat!</li>
+                    <li>Waktu Terbatas, Dampak Tanpa Batas!</li>
+                    <li>Akses Hanya untuk Segelintir yang Terpilih!</li>
+                    <li>Solusi Instan untuk Anda yang Super Ambisius!</li>
+                    <li>Keunggulan Anda Dimulai di Sini!</li>
+                </ul>
+            </div>
+        </div>
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
+        <!-- Modal: Educator -->
+        <div id="educator-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('educator')">&times;</button>
+                <h3>Educator - Super Prompt</h3>
+                <p>Jadilah Guru yang Selalu Dikenang dan Menginspirasi Sepanjang Hidup Mereka.</p>
+                <ul>
+                    <li>Penawaran yang Hanya untuk Anda</li>
+                    <li>Jadikan Pendidikan Lebih Menginspirasi</li>
+                    <li>Waktu Adalah Segalanya</li>
+                    <li>Kualitas yang Tidak Tertandingi</li>
+                    <li>Langkah Awal Menuju Era Baru Pendidikan</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modal: SWOT Analysis -->
+        <div id="swot-analysis-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('swot-analysis')">&times;</button>
+                <h3>SWOT Analysis - Super Prompt</h3>
+                <p>Super Prompt untuk melakukan analisis SWOT yang mendalam dan akurat. Temukan Keunggulan Kompetitif Anda.</p>
+                <ul>
+                    <li>Panduan Paling Tajam & Tepat Sasaran</li>
+                    <li>Rahasia yang Dimiliki Segelintir Orang</li>
+                    <li>Hanya untuk Anda yang Siap Bertindak</li>
+                    <li>Langkah Jitu Menuju Keputusan Berbasis Data</li>
+                    <li>Harga Eksklusif untuk Penentu Keberhasilan</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modal: Content Writer -->
+        <div id="content-writer-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('content-writer')">&times;</button>
+                <h3>Content Writer - Super Prompt</h3>
+                <p>Untuk Anda yang ingin menghasilkan tulisan yang menjual dan selalu memukau pembaca:</p>
+                <ul>
+                    <li>Teknik Penulisan yang Menghipnotis</li>
+                    <li>Sistem yang Mengubah Ide Biasa Jadi Luar Biasa</li>
+                    <li>Rahasia Copywriting yang Menggerakkan Pasar</li>
+                    <li>Konsistensi Tanpa Batas</li>
+                    <li>Penawaran Eksklusif untuk Anda yang Cepat Bertindak</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modal: Content Creator -->
+        <div id="content-creator-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('content-creator')">&times;</button>
+                <h3>Content Creator - Super Prompt</h3>
+                <p>Untuk Anda yang ingin menciptakan konten memikat dan berdaya tarik tinggi:</p>
+                <ul>
+                    <li>Formula Kreatif yang Tak Tertandingi</li>
+                    <li>Penghemat Waktu Anda</li>
+                    <li>Strategi untuk Meningkatkan Engagement</li>
+                    <li>Kualitas Profesional dalam Setiap Postingan</li>
+                    <li>Akses Eksklusif dengan Kuota Terbatas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modal: All In One -->
+        <div id="all-in-one-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal('all-in-one')">&times;</button>
+                <h3>All In One - Super Prompt</h3>
+                <p>Revolusi Kreativitas dan Produktivitas Anda.</p>
+                <ul>
+                    <li>Segalanya dalam Genggaman Anda</li>
+                    <li>Eksklusivitas Terbatas untuk Pencetak Perubahan</li>
+                    <li>Kecepatan untuk Hasil Maksimal</li>
+                    <li>Dirancang untuk Anda, oleh Ahli Terbaik</li>
+                    <li>Penawaran Tak Tertandingi, Tapi Tidak Selamanya</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer" data-aos="fade-up">
+            <div class="container">
+                <div class="social-icons">
+                    <a href="https://www.tiktok.com/@datanerve7?_t=8pxDKxau8UC&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/6285651161356" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/datanerve7/profilecard/?igsh=OGdiejdnZno3dDJ3" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/dn7-chatgpt-specialist-3092a531a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin-in"></i></a>                
+                </div>
+                <p>&copy; 2024 Datanerve7. Semua hak dilindungi undang-undang.</p>
+                <p>Email: excellenceprompt7@gmail.com</p>
+            </div>
+        </div>
+
+        <!-- AOS JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+
+            // Smooth Scroll untuk navigasi
+            document.querySelectorAll('.nav-menu ul li a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            const headerOffset = document.querySelector('.header').offsetHeight + document.querySelector('.discount-banner').offsetHeight;
+                            const elementPosition = target.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
                     }
-                }
+                });
             });
-        });
 
-        // Fungsi untuk membuka modal
-        function openModal(product) {
-            const modal = document.getElementById(`${product}-modal`);
-            if (modal) {
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Mencegah scroll saat modal terbuka
+            // Fungsi untuk membuka modal
+            function openModal(product) {
+                const modal = document.getElementById(`${product}-modal`);
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Mencegah scroll saat modal terbuka
+                }
             }
-        }
 
-        // Fungsi untuk menutup modal
-        function closeModal(product) {
-            const modal = document.getElementById(`${product}-modal`);
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Mengembalikan scroll
-            }
-        }
-
-        // Menutup modal jika pengguna mengklik di luar konten modal
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target == modal) {
+            // Fungsi untuk menutup modal
+            function closeModal(product) {
+                const modal = document.getElementById(`${product}-modal`);
+                if (modal) {
                     modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+                    document.body.style.overflow = 'auto'; // Mengembalikan scroll
                 }
-            });
-        }
-    </script>
-</body>
-</html>
+            }
+
+            // Menutup modal jika pengguna mengklik di luar konten modal
+            window.onclick = function(event) {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        </script>
+    </body>
+                    </html>
