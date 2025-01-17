@@ -33,11 +33,6 @@
             --footer-text: #FFFFFF;
             --notification-success-bg: rgba(0, 128, 0, 0.2);
             --notification-error-bg: rgba(255, 0, 0, 0.2);
-            
-            /* Tambahan untuk Diskon */
-            --discount-bg: linear-gradient(135deg, #FF5733, #FFBD33); /* Gradient oranye */
-            --discount-text: #FFFFFF;
-            --discount-icon: #FFFFFF;
         }
 
         /* Reset dan Dasar */
@@ -74,7 +69,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000; /* Z-Index lebih rendah dari banner diskon */
+            z-index: 1000;
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
@@ -117,86 +112,9 @@
             left: 0;
         }
 
-        /* Discount Notification Banner */
-        .discount-banner {
-            background: var(--discount-bg);
-            color: var(--discount-text);
-            text-align: center;
-            padding: 15px 20px;
-            position: fixed;
-            top: 70px; /* Sesuaikan dengan tinggi header */
-            width: 100%;
-            z-index: 1001; /* Z-Index lebih tinggi dari header */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            animation: slideDown 0.5s ease-out forwards;
-        }
-        .discount-banner .icon {
-            font-size: 1.5em;
-            color: var(--discount-icon);
-            animation: bounce 2s infinite;
-        }
-        .discount-banner p {
-            margin: 0;
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 87, 51, 0.7);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(255, 87, 51, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 87, 51, 0);
-            }
-        }
-        @media (max-width: 768px) {
-            .discount-banner {
-                flex-direction: column;
-                gap: 5px;
-                top: 60px; /* Sesuaikan jika header memiliki tinggi berbeda pada mobile */
-            }
-            .discount-banner p {
-                font-size: 1em;
-            }
-            .discount-banner .icon {
-                font-size: 1.2em;
-            }
-            .discount-badge {
-                padding: 6px 10px; /* Sesuaikan padding pada layar kecil */
-                font-size: 0.95em; /* Sesuaikan ukuran font */
-            }
-        }
-
         /* Page Header */
         .page-header {
-            padding: 200px 20px 60px 20px; /* Tambah padding top untuk banner dan header */
+            padding: 120px 20px 60px 20px; /* Sesuaikan padding agar tidak tertutup header */
             text-align: center;
             background-color: var(--bg-color);
             min-height: 100vh;
@@ -217,13 +135,11 @@
             opacity: 0;
             animation: blink 1s forwards;
         }
-
         .page-header h1 span:nth-child(odd) {
-            animation-delay: calc(0.1s * var(--i));
+            animation-delay: calc(0.1s * (var(--i)));
         }
-
         .page-header h1 span:nth-child(even) {
-            animation-delay: calc(0.1s * var(--i));
+            animation-delay: calc(0.1s * (var(--i)));
         }
         @keyframes blink {
             0% { opacity: 0; }
@@ -291,7 +207,6 @@
             flex-direction: column;
             align-items: center;
             text-align: left;
-            position: relative; /* Untuk positioning badge */
         }
         .produk-card:hover {
             transform: translateY(-10px);
@@ -305,42 +220,6 @@
         }
         .produk-card:hover img {
             transform: scale(1.05);
-        }
-        /* Discount Badge */
-        .discount-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px; /* Ubah dari left: 10px; menjadi right: 10px; */
-            background: var(--discount-bg);
-            color: var(--discount-text);
-            padding: 8px 12px; /* Tambah padding untuk ukuran lebih besar */
-            border-radius: 8px; /* Tambah border radius */
-            font-size: 1em; /* Perbesar ukuran font */
-            font-weight: bold;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Tambah bayangan */
-            animation: pulse 2s infinite; /* Tambah animasi pulse */
-        }
-        .discount-badge i {
-            font-size: 1.2em; /* Perbesar ikon */
-            color: var(--discount-icon);
-        }
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 87, 51, 0.7);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(255, 87, 51, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 87, 51, 0);
-            }
         }
         .produk-content {
             padding: 20px;
@@ -519,25 +398,6 @@
                 width: 100%;
             }
         }
-
-        /* Tambahan Responsif untuk Banner */
-        @media (max-width: 768px) {
-            .discount-banner {
-                flex-direction: column;
-                gap: 5px;
-                top: 60px; /* Sesuaikan jika header memiliki tinggi berbeda pada mobile */
-            }
-            .discount-banner p {
-                font-size: 1em;
-            }
-            .discount-banner .icon {
-                font-size: 1.2em;
-            }
-            .discount-badge {
-                padding: 6px 10px; /* Sesuaikan padding pada layar kecil */
-                font-size: 0.95em; /* Sesuaikan ukuran font */
-            }
-        }
     </style>
 </head>
 <body>
@@ -554,12 +414,6 @@
                 <li><a href="super-prompt.html">Super Prompt</a></li>
             </ul>
         </div>
-    </div>
-
-    <!-- Discount Notification Banner -->
-    <div class="discount-banner" data-aos="fade-down">
-        <i class="fas fa-tags icon"></i>
-        <p>🎉 Dapatkan Diskon 50%! Berlaku hingga 17 Januari 2025. Jangan lewatkan kesempatan ini! 🎉</p>
     </div>
 
     <!-- Page Header -->
@@ -590,13 +444,12 @@
             <div class="produk-container">
                 <!-- Produk 1: SuperPrompt Xcelerator -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="discount-badge"><i class="fas fa-percent"></i> 50% OFF</div>
                     <img src="assets/images/prompt-xcelerator.png" alt="SuperPrompt Xcelerator">
                     <div class="produk-content">
                         <h3>SuperPrompt Xcelerator</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 1.199.999</span>
-                            <span class="harga-diskon">Rp 599.999</span>
+                            <span class="harga-asli">Rp 999.999</span>
+                            <span class="harga-diskon">Rp 499.999</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('superprompt')">
@@ -610,13 +463,12 @@
                 </div>
                 <!-- Produk 2: E-book Xcelerator -->
                 <div class="produk-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="discount-badge"><i class="fas fa-percent"></i> 50% OFF</div>
                     <img src="assets/images/ebook-xcelerator.png" alt="E-book Xcelerator">
                     <div class="produk-content">
                         <h3>E-book Xcelerator</h3>
                         <div class="harga">
-                            <span class="harga-asli">Rp 879.500</span>
-                            <span class="harga-diskon">Rp 439.750</span>
+                            <span class="harga-asli">Rp 479.500</span>
+                            <span class="harga-diskon">Rp 190.000</span>
                         </div>
                         <div class="btn-container">
                             <button class="btn-detail" onclick="openModal('ebook')">
@@ -700,11 +552,7 @@
                     const targetId = href.substring(1);
                     const target = document.getElementById(targetId);
                     if (target) {
-                        const header = document.querySelector('.header');
-                        const banner = document.querySelector('.discount-banner');
-                        const headerHeight = header.offsetHeight;
-                        const bannerHeight = banner.offsetHeight;
-                        const headerOffset = headerHeight + bannerHeight;
+                        const headerOffset = document.querySelector('.header').offsetHeight;
                         const elementPosition = target.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -747,4 +595,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
